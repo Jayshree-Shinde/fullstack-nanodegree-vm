@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+					</div>
+</div>
+	
+<div class="row divider blue">
+		<div class="col-md-12"></div>
+</div>
+<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Category</h1>
+		</div>
+</div>
+	
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+{% for category in category %}
+		<a href = "{{url_for('showCategories')}}">
+			<div class="row">
+				<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{category.name}}</h3>
+					</div>
+				<div class="col-md-1"></div>
+			</div>
+		</a>
+	{% endfor %}
+{% endblock %}
+<div class="latestItems">
+	<h2 class="latestItems">Latest Items</h2>
+</div>
+<hr>
+
+ <div class="items">
+    {% for item in items %}
+        <h4 class="text-center">{{item.name}}</h4>
+            <div class="text-center">
+            <p><a class="btn btn-default" href="{{url_for('showItem', category_name=item.category.name)}}" role="button">View details </a></p>
+			</div>
+			{% endfor %}
+</div>
+</body>
+</html>
